@@ -41,6 +41,14 @@ app.get('/logs', async (req, res) => {
   })
 });
 
+//Show
+app.get('/logs/:id', async (req, res) => {
+  const allLogs = await Log.findById(req.params.id); //find the log by id
+  res.render('Show', {
+    log: allLogs //pass the found logs to the show page
+  });
+});
+
 //New
 app.get('/new', (req, res) => {
   res.render('New');
