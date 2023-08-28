@@ -3,7 +3,12 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const mongoose = require('mongoose');
+const Log = require('./models/logs.js'); //import the model
 const methodOverride = require('method-override');
+
+Log.once('open', () => {
+  console.log('connected to the Logs database');
+})
 
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -40,7 +45,9 @@ app.post('/logs', async (req, res) => {
     req.body.shipIsBroken = true; // do some data correction
   } else { //if not checked, req.body.shipIsBroken is undefined
     req.body.shipIsBroken = false;
-  } res.send(req.body);
+  } 
+  await Log.create(req.body); //create the new log
+  res.redirect('/logs'); //redirect to the index page
 });
 
 
