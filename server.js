@@ -63,6 +63,21 @@ app.post('/logs', async (req, res) => {
   res.redirect('/logs'); //redirect to the index page
 });
 
+//Edit
+app.get('/logs/:id/edit', async (req, res) => {
+  const foundLog = await Log.findById(req.params.id); //find the log by id
+  res.render('Edit', {
+    log: foundLog //pass the found logs to the edit page
+  });
+});
+
+//Update = PUT
+app.put('/logs/:id', async (req, res) => {
+  req.body.shipIsBroken === 'on' ? req.body.shipIsBroken = true : req.body.shipIsBroken = false;
+  await Log.findByIdAndUpdate(req.params.id, req.body); //find the log by id and update it
+  res.redirect(`/logs/${req.params.id}`); //redirect to the edited log
+});
+
 //Delete
 app.delete('/logs/:id', async (req, res) => {
   await Log.findByIdAndRemove(req.params.id); //find the log by id and remove it
