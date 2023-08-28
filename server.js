@@ -33,6 +33,14 @@ app.get('/', (req, res) => {
   res.send('Homepage');
 });
 
+//index
+app.get('/logs', async (req, res) => {
+  const foundLogs = await Log.find({}); //find all the logs
+  res.render('Index',  {
+    logs: foundLogs //pass the found logs to the index page
+  })
+});
+
 //New
 app.get('/new', (req, res) => {
   res.render('New');
