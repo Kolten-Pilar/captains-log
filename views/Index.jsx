@@ -5,7 +5,7 @@ function Index( {logs} ) {
   return (
     <Default title={'Logs Index Page'}>
       <nav>
-        <a href="/logs/new">Create a New Entry</a>
+        <a href="/new">Create a New Entry</a>
       </nav>
       <br />
       <ul>
