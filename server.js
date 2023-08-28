@@ -33,6 +33,16 @@ app.get('/new', (req, res) => {
   res.render('New');
 });
 
+//Create = POST
+app.post('/logs', async (req, res) => {
+  console.log('created log: ', req.body);
+  if(req.body.shipIsBroken === 'on'){ //if checked, req.body.shipIsBroken is set to 'on'
+    req.body.shipIsBroken = true; // do some data correction
+  } else { //if not checked, req.body.shipIsBroken is undefined
+    req.body.shipIsBroken = false;
+  } res.send(req.body);
+});
+
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 app.listen(port, () => {
