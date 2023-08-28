@@ -30,7 +30,10 @@ app.use(methodOverride('_method'));
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //routes
 app.get('/', (req, res) => {
-  res.send('Homepage');
+  res.send(`<h1>Captain's Logs</h1>
+  <h2><a href='/logs'>See All Logs</a></h2>
+  <h2><a href='/new'>Create a New Log</a></h2>
+  `);
 });
 
 //index
