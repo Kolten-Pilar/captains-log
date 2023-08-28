@@ -41,11 +41,8 @@ app.get('/new', (req, res) => {
 //Create = POST
 app.post('/logs', async (req, res) => {
   console.log('created log: ', req.body);
-  if(req.body.shipIsBroken === 'on'){ //if checked, req.body.shipIsBroken is set to 'on'
-    req.body.shipIsBroken = true; // do some data correction
-  } else { //if not checked, req.body.shipIsBroken is undefined
-    req.body.shipIsBroken = false;
-  } 
+   //verify if the checkbox is checked or not
+   req.body.shipIsBroken === 'on' ? req.body.shipIsBroken = true : req.body.shipIsBroken = false;
   await Log.create(req.body); //create the new log
   res.redirect('/logs'); //redirect to the index page
 });
