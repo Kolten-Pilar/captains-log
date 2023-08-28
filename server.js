@@ -63,6 +63,12 @@ app.post('/logs', async (req, res) => {
   res.redirect('/logs'); //redirect to the index page
 });
 
+//Delete
+app.delete('/logs/:id', async (req, res) => {
+  await Log.findByIdAndRemove(req.params.id); //find the log by id and remove it
+  res.redirect('/logs'); //redirect to the index page
+});
+
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 app.listen(port, () => {
